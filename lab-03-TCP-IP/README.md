@@ -1,6 +1,7 @@
 # Lab 3: TCP/IP Model & Encapsulation
 
 ## 📋 Overview
+
 This lab corresponds to **Day 3** of Jeremy's IT Lab CCNA 200-301 course. The primary objective is to understand the 5-layer network model, the distinction between protocols and standards, how data encapsulation works, and how Protocol Data Units (PDUs) are structured across layers.
 
 * **Course Reference:** Day 3 - TCP/IP Model
@@ -9,11 +10,13 @@ This lab corresponds to **Day 3** of Jeremy's IT Lab CCNA 200-301 course. The pr
 ---
 
 ## 🌐 Fundamentals of Protocols & Standards
+
 * **Protocol:** A set of rules defining how data should be communicated between devices over a network.
 * **Standard:** An agreed-upon specification that describes how a protocol or technology should work.
 * **Why TCP/IP Won:** TCP/IP became dominant over legacy vendor-proprietary solutions because it was published as open standards that any vendor could implement and run across diverse network types.
 
 ### Standards Organizations
+
 * **IEEE (Institute of Electrical and Electronics Engineers):** Develops many of the technologies used on local area networks (LANs).
   * *Ethernet:* IEEE 802.3
   * *Wi-Fi:* IEEE 802.11
@@ -22,7 +25,13 @@ This lab corresponds to **Day 3** of Jeremy's IT Lab CCNA 200-301 course. The pr
 ---
 
 ## 🧱 The 5-Layer Network Model
+
 Network communication involves complex tasks—such as physical signal transmission, local delivery, routing across networks, end-to-end conversations, and application services. A layered model groups related jobs, where each layer relies on the services of the layer below and provides services to the layer above.
+
+![Layered Model Overview](sources/image.png)
+
+*(Note: Layered models are conceptual descriptions, not rigid laws)*
+![Layer Stack Breakdown](sources/image2.png)
 
 1. **Layer 1: Physical Layer**
    * **Function:** Sends and receives raw bits as electrical, optical, or radio signals over the transmission medium.
@@ -48,12 +57,25 @@ Network communication involves complex tasks—such as physical signal transmiss
 ---
 
 ## 📦 Encapsulation, Decapsulation & PDUs
+
 As data moves through the protocol stack, headers (and trailers) are added or removed in a process known as encapsulation and decapsulation.
 
+### Encapsulation Process
+
+![Encapsulation Flow](sources/Encapsulation&decapsulation.png)
+
+### Decapsulation Process
+
+![Decapsulation Flow](sources/decapsulation.png)
+
 ### Protocol Data Units (PDUs) and Payloads
+
 At each stage of the encapsulation process, the message is referred to as a PDU:
+
 * **L4 PDU (Segment / Datagram):** Application Data + Transport Layer Header. *(TCP creates segments; UDP creates datagrams).*
 * **L3 PDU (Packet):** L4 PDU + Internet Layer Header.
 * **L2 PDU (Frame):** L3 PDU + Data Link Header and Trailer. *(This is what is actually transmitted over the physical wire).*
 
 > **Payload Definition:** Everything encapsulated inside a layer's header or trailer is considered the payload for that layer. For instance, a packet's payload is the transport segment/datagram, and a frame's payload is the network packet.
+
+note: original notes in the history
