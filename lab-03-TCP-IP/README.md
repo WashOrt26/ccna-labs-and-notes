@@ -1,6 +1,6 @@
 # Lab 3: TCP/IP Model & Encapsulation
 
-## 📋 Overview
+## Overview
 
 This lab corresponds to **Day 3** of Jeremy's IT Lab CCNA 200-301 course. The primary objective is to understand the 5-layer network model, the distinction between protocols and standards, how data encapsulation works, and how Protocol Data Units (PDUs) are structured across layers.
 
@@ -9,7 +9,7 @@ This lab corresponds to **Day 3** of Jeremy's IT Lab CCNA 200-301 course. The pr
 
 ---
 
-## 🌐 Fundamentals of Protocols & Standards
+## Fundamentals of Protocols & Standards
 
 * **Protocol:** A set of rules defining how data should be communicated between devices over a network.
 * **Standard:** An agreed-upon specification that describes how a protocol or technology should work.
@@ -24,13 +24,14 @@ This lab corresponds to **Day 3** of Jeremy's IT Lab CCNA 200-301 course. The pr
 
 ---
 
-## 🧱 The 5-Layer Network Model
+## The 5-Layer Network Model
 
 Network communication involves complex tasks—such as physical signal transmission, local delivery, routing across networks, end-to-end conversations, and application services. A layered model groups related jobs, where each layer relies on the services of the layer below and provides services to the layer above.
 
 ![Layered Model Overview](sources/image.png)
 
 *(Note: Layered models are conceptual descriptions, not rigid laws)*
+
 ![Layer Stack Breakdown](sources/image2.png)
 
 1. **Layer 1: Physical Layer**
@@ -56,7 +57,7 @@ Network communication involves complex tasks—such as physical signal transmiss
 
 ---
 
-## 📦 Encapsulation, Decapsulation & PDUs
+## Encapsulation, Decapsulation & PDUs
 
 As data moves through the protocol stack, headers (and trailers) are added or removed in a process known as encapsulation and decapsulation.
 
