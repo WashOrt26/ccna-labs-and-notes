@@ -1,164 +1,59 @@
-# Lab 03: TCP/IP model
-
-how does actually work TCP/IP
-
-## Overview
-
-* **Course reference:**
-* **Simulator used:**
-
-TCP/IP model
-
-- Aplication layer
-
-- Transport layer
-
-- Internet layer\local network layer
-
-- physical
-
-## Importance of a protocol
-
-Set of rules defining how data should be comunicated between device over a network
-
-Standard: an agreed-upon specification that describes how a protocol or technology should work
-
-### where TCP/IP comes from
-
-TCP/IP became a dominant over vendor-propietary solutions at the time because it was published as a set of ppen standards that any vendor could implement, and it could run over many different types of networks
-
-#### Who defines the standards
-
-developed by differents standarts organizations
-
-- IEEE (Institute of Electrical and Electronics Engineers):
-
-  develops many of the tecnologies used on local area networks
-
-  - Ethernet (802.3)
-
-  - WI-FI(802.11)
-
-- IETF (Internet engineering Task Force)
-
-  Open comunity that defines protocols used on the internet
-
-  - TCP,IP,UDP,HTTP,DNS, etc
-
-  - Publishes standards in documents called RFC (Request for comments
-
-#### Layered models
-
-- Network do a lot of differents jobs to move data from one computer to anothes
-
-  - phyisical transmition of signals, local delivery on lan, routing traffic between networks end-to-end conversations, aplicattions, etc
-
-- A model let us group related jobs into layers
-
-  - Each layer has a specific role
-
-  - Each layer uses the services of the layer below and provides services to the layer above
-
-- Protocols live (mostly) at one layer
-
-  - IP,TCP,HTTP, etc
-
-  - Together they form a stack of protocols that work as a team (network sytack)
-
-![image1](sources/image.png)
-
-(a description, not a law)
-![image2](sources/image2.png)
-
-- The pyisical layer (layer 1) sends and receives bits as electrical, optical or radio signals over the medium
-
-  - Defines things like cables, connectors, signals level, and link speed
-  - Example: copper UTP cables, fiber-optic cables, wi-fi radios an antennas, network intrecfaces (NICs)
-  - Usually the network engienners don't have to know the low-level details. The phyisical aspects of transmitting data are very complex.
-
-- The local Network layer (Layer 2) provides hop-to-hop delivery of the messages on a local network
-
-  - a hop is one step along the path between two devices
-
-    - from one router or host, to the next router on host in the path
-
-  - switches don't count: a switch just extends the local network, allowing multiple devices to connect
-
-  - Uses MAC adresses to identify interfaces
-
-  - Protocols at this layer include:
-
-    - Ethernet (IEEE 802.3)
-
-    - WI-FI (IEEE 802.11)
-
-- Internet layer (layer 3) provides end-to-end delivery between hosts across multiple networks
-
-  - Uses IP adresses to identify hosts in the network
-
-  - Router operate mainly at this layer, using the message's destination IP adress to foward the message toward it's final destination hosts
-
-  - protocol at this layer
-
-    - IP (IPv4, IPv6)
-
-    - ICMP (Internet COntrok Message Protocol)
-
-- The transport layer (Layer 4) provides end=to-end comunication between application processes
-
-  - Also called process-to process or service-to-service
-
-  - Uses port numbers to identify the processes on each host
-
-  - Runs mainly on the communicating hosts; routers normally operate based on IP (layer 3), not on the transport-layer information
-
-  - Protocols at this layer:
-
-    - UDP (User Datagram Protocol): simple and efficient
-
-    - TCP (Transmission Control Protocol): more robust features beyond basic message adressing 
-
-- The application layer (layer 5) is where network comunications meet applications.
-
-  - Usually called layer 7
-
-  - Defines how application processes format, send and interpret data
-
-  - Protocols at this layer define message formats and rules dor specific task, such as:
-
-    - Browsing web pages (HTTP/HTTPS)
-
-    - Transfering files (FTP, TFTP)
-
-    - Sending/receiving email (SMPT, POP3, IMAP)
-
-### How the layer combine into a stack
-
-Encapsulation
-
-![encapsulation](sources/Encapsulation&decapsulation.png)
-
-Decapsulation
-
-![decapsulation](sources/decapsulation.png)
-
-### Protocol data units
-
-- At each stage in the encapsulation/decapsulation process, there is a name given to the message
-
-  - The combination of data and a L4 header is called secment (TCP) or datagram(UDP)
-
-    - TCP creates segments, UDP creates datagrams
-  
-  - The combination of a segment/datagram and L3 header is called a packet
-  - The combination of a packet and L2 header/trailer is called a frame
-    - This is what actually send over the wire
-  
-  ##### ALternative names to decribe the message at each stage: Protocol data unit (PDU)
-    - A segment of atagram is a layer 4 PDU (L4PDU)
-    - A packet is a Layer 3 PDU (L3PDU)
-    - A frame is a Layer 2 PDU (L2PDU)
-  ### The content of each PDU (everything encapsulated by the layer's header/trailer) are called the payload
-  - A segment or datagram payload is the application data
-  - A packet's payload is a segment or datagram
-  - a frame's payload is a packet
+# Lab 3: TCP/IP Model & Encapsulation
+
+## 📋 Overview
+This lab corresponds to **Day 3** of Jeremy's IT Lab CCNA 200-301 course. The primary objective is to understand the 5-layer network model, the distinction between protocols and standards, how data encapsulation works, and how Protocol Data Units (PDUs) are structured across layers.
+
+* **Course Reference:** Day 3 - TCP/IP Model
+* **Simulator Used:** Theoretical / Conceptual Lab
+
+---
+
+## 🌐 Fundamentals of Protocols & Standards
+* **Protocol:** A set of rules defining how data should be communicated between devices over a network.
+* **Standard:** An agreed-upon specification that describes how a protocol or technology should work.
+* **Why TCP/IP Won:** TCP/IP became dominant over legacy vendor-proprietary solutions because it was published as open standards that any vendor could implement and run across diverse network types.
+
+### Standards Organizations
+* **IEEE (Institute of Electrical and Electronics Engineers):** Develops many of the technologies used on local area networks (LANs).
+  * *Ethernet:* IEEE 802.3
+  * *Wi-Fi:* IEEE 802.11
+* **IETF (Internet Engineering Task Force):** An open community that defines core internet protocols (TCP, IP, UDP, HTTP, DNS, etc.) and publishes standards in documents called **RFCs (Request for Comments)**.
+
+---
+
+## 🧱 The 5-Layer Network Model
+Network communication involves complex tasks—such as physical signal transmission, local delivery, routing across networks, end-to-end conversations, and application services. A layered model groups related jobs, where each layer relies on the services of the layer below and provides services to the layer above.
+
+1. **Layer 1: Physical Layer**
+   * **Function:** Sends and receives raw bits as electrical, optical, or radio signals over the transmission medium.
+   * **Details:** Defines cables, connectors, signal levels, and link speeds.
+   * **Examples:** Copper UTP cables, fiber-optic cables, Wi-Fi radios/antennas, and Network Interface Cards (NICs).
+2. **Layer 2: Local Network Layer (Data Link)**
+   * **Function:** Provides hop-to-hop delivery of messages on a local network segment. Uses **MAC addresses** to identify interfaces.
+   * **Key Concept:** A "hop" is one step along the path between two devices (e.g., host-to-router or router-to-router). Switches extend the local network segment but do not count as routing hops.
+   * **Protocols:** Ethernet (IEEE 802.3), Wi-Fi (IEEE 802.11).
+3. **Layer 3: Internet Layer**
+   * **Function:** Provides end-to-end delivery of packets across multiple distinct networks. Uses **IP addresses** to identify hosts.
+   * **Key Devices:** Routers operate mainly at this layer, inspecting destination IP addresses to forward traffic toward its destination.
+   * **Protocols:** IP (IPv4, IPv6), ICMP (Internet Control Message Protocol).
+4. **Layer 4: Transport Layer**
+   * **Function:** Provides process-to-process (service-to-service) communication between application processes on communicating hosts. Uses **port numbers** to identify specific processes.
+   * **Protocols:** 
+     * **TCP (Transmission Control Protocol):** Connection-oriented, robust, and reliable delivery.
+     * **UDP (User Datagram Protocol):** Simple, connectionless, and efficient.
+5. **Layer 5: Application Layer**
+   * **Function:** Where network communications interface directly with applications (often mapped conceptually to OSI Layer 7). Defines how application processes format, send, and interpret data.
+   * **Protocols:** HTTP/HTTPS (web browsing), FTP/TFTP (file transfer), SMTP/POP3/IMAP (email), DNS.
+
+---
+
+## 📦 Encapsulation, Decapsulation & PDUs
+As data moves through the protocol stack, headers (and trailers) are added or removed in a process known as encapsulation and decapsulation.
+
+### Protocol Data Units (PDUs) and Payloads
+At each stage of the encapsulation process, the message is referred to as a PDU:
+* **L4 PDU (Segment / Datagram):** Application Data + Transport Layer Header. *(TCP creates segments; UDP creates datagrams).*
+* **L3 PDU (Packet):** L4 PDU + Internet Layer Header.
+* **L2 PDU (Frame):** L3 PDU + Data Link Header and Trailer. *(This is what is actually transmitted over the physical wire).*
+
+> **Payload Definition:** Everything encapsulated inside a layer's header or trailer is considered the payload for that layer. For instance, a packet's payload is the transport segment/datagram, and a frame's payload is the network packet.
